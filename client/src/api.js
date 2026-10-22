@@ -1,5 +1,8 @@
-// API utility — all backend calls go through here
-const API_BASE = '/api';
+// Dynamically resolve backend API on port 5000 based on the current host (works on localhost & EC2)
+const API_BASE = typeof window !== 'undefined'
+  ? `http://${window.location.hostname}:5000/api`
+  : 'http://localhost:5000/api';
+
 
 async function request(url, options = {}) {
   const res = await fetch(`${API_BASE}${url}`, {
