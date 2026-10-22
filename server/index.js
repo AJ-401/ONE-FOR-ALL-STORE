@@ -15,7 +15,13 @@ const PORT = process.env.SERVER_PORT || 5000;
 
 // ─── Middleware ──────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (curl/health check), port 3000, 5173, or configured FRONTEND_URL
+    if (!origin || /:(3000|5173)$/.test(origin) || origin === process.env.FRONTEND_URL) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   methods: ['GET', 'POST'],
   credentials: true,
 }));
