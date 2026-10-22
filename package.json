@@ -1,0 +1,11 @@
+{
+  "name": "aws-polyglot-casestudy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AWS Polyglot Persistence E-Commerce Platform (Amazon RDS MySQL + Amazon DynamoDB)",
+  "scripts": {
+    "server": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client"
+  }
+}
